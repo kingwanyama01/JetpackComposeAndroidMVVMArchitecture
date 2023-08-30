@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "68037743174",
+    "firebase_url": "https://august-morning-shopping-app-default-rtdb.firebaseio.com",
+    "project_id": "august-morning-shopping-app",
+    "storage_bucket": "august-morning-shopping-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68037743174:android:490b7769dde343a8157047",
+        "android_client_info": {
+          "package_name": "com.example.augustmoringnavigationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68037743174-6mheg69kn9mg1e66sdh40400vntm073g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbEA6lolgqT1V3RukP8wcDi8CCxiEOnkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68037743174-6mheg69kn9mg1e66sdh40400vntm073g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
