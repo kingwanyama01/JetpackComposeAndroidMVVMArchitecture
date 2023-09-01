@@ -3,18 +3,29 @@ package com.example.augustmoringnavigationapp.data
 import android.app.ProgressDialog
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.example.augustmoringnavigationapp.models.Product
 import com.example.augustmoringnavigationapp.navigation.ROUTE_LOGIN
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 
-class ProductRepository(var navController:NavHostController, var context:Context) {
+class ProductRepository(var navController: NavHostController,var context:Context) {
     var authRepository:AuthRepository
     var progress:ProgressDialog
-    var products:ArrayList<Product>
+
     init {
         authRepository = AuthRepository(navController,context)
         if (!authRepository.isLoggedIn()){
@@ -23,9 +34,8 @@ class ProductRepository(var navController:NavHostController, var context:Context
         progress = ProgressDialog(context)
         progress.setTitle("Loading")
         progress.setMessage("Please wait...")
-
-        products = mutableListOf<Product>() as ArrayList<Product>
     }
+
 
     fun saveProduct(productName:String, productQuantity:String, productPrice:String){
         var id = System.currentTimeMillis().toString()
@@ -43,20 +53,22 @@ class ProductRepository(var navController:NavHostController, var context:Context
         }
     }
 
-    fun viewProducts():ArrayList<Product>{
+    fun viewProducts(product:MutableState<Product>, products:SnapshotStateList<Product>): SnapshotStateList<Product> {
         var ref = FirebaseDatabase.getInstance().getReference().child("Products")
+
         progress.show()
-        ref.addValueEventListener(object : ValueEventListener{
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 progress.dismiss()
                 products.clear()
                 for (snap in snapshot.children){
-                    var product = snap.getValue(Product::class.java)
-                    products.add(product!!)
+                    val value = snap.getValue(Product::class.java)
+                    product.value = value!!
+                    products.add(value)
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
-                progress.dismiss()
                 Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
             }
         })

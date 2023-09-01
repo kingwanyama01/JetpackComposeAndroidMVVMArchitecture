@@ -107,7 +107,7 @@ fun UpdateProductsScreen(navController: NavHostController,id:String) {
 
         Button(onClick = {
             //-----------WRITE THE UPDATE LOGIC HERE---------------//
-            var productRepository = ProductRepository(navController,context)
+            var productRepository = ProductRepository(navController, context)
             productRepository.updateProduct(productName.text.trim(),productQuantity.text.trim(),
                 productPrice.text.trim(),id)
 

@@ -9,9 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.augustmoringnavigationapp.data.ProductRepository
 import com.example.augustmoringnavigationapp.navigation.ROUTE_ADD_PRODUCTS
 import com.example.augustmoringnavigationapp.navigation.ROUTE_VIEW_PRODUCTS
 import com.example.augustmoringnavigationapp.ui.theme.AugustMoringNavigationAppTheme
@@ -21,6 +24,9 @@ import com.example.augustmoringnavigationapp.ui.theme.pages.login.LoginScreen
 fun HomeScreen(navController: NavHostController) {
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally) {
+        var context = LocalContext.current
+
+        var productRepository = ProductRepository(navController,context)
 
         Text(text = "Welcome to home page")
 
