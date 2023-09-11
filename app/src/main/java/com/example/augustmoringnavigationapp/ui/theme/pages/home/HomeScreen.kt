@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.augustmoringnavigationapp.data.ProductRepository
 import com.example.augustmoringnavigationapp.navigation.ROUTE_ADD_PRODUCTS
 import com.example.augustmoringnavigationapp.navigation.ROUTE_VIEW_PRODUCTS
+import com.example.augustmoringnavigationapp.navigation.ROUTE_VIEW_UPLOADS
 import com.example.augustmoringnavigationapp.ui.theme.AugustMoringNavigationAppTheme
 import com.example.augustmoringnavigationapp.ui.theme.pages.login.LoginScreen
 
@@ -40,6 +41,12 @@ fun HomeScreen(navController: NavHostController) {
             navController.navigate(ROUTE_VIEW_PRODUCTS)
         }) {
             Text(text = "View products")
+        }
+
+        Button(onClick = {
+            navController.navigate(ROUTE_VIEW_UPLOADS)
+        }) {
+            Text(text = "View uploads")
         }
 
     }

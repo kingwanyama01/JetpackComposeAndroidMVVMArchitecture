@@ -12,6 +12,7 @@ import com.example.augustmoringnavigationapp.ui.theme.pages.login.LoginScreen
 import com.example.augustmoringnavigationapp.ui.theme.pages.products.AddProductsScreen
 import com.example.augustmoringnavigationapp.ui.theme.pages.products.UpdateProductsScreen
 import com.example.augustmoringnavigationapp.ui.theme.pages.products.ViewProductsScreen
+import com.example.augustmoringnavigationapp.ui.theme.pages.products.ViewUploadsScreen
 import com.example.augustmoringnavigationapp.ui.theme.pages.signup.SignupScreen
 
 @Composable
@@ -42,6 +43,9 @@ fun AppNavHost(modifier: Modifier = Modifier,
         }
         composable(ROUTE_UPDATE_PRODUCTS+"/{id}"){passedData->
             UpdateProductsScreen(navController,passedData.arguments?.getString("id")!!)
+        }
+        composable(ROUTE_VIEW_UPLOADS){
+            ViewUploadsScreen(navController)
         }
     }
 
